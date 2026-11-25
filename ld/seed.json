@@ -1,0 +1,7 @@
+{
+  "seedVersion": 1,
+  "environments": [{ "key": "demo", "name": "Demo", "color": "405BFF" }],
+  "flags": [],
+  "segments": [],
+  "aiConfigs": []
+}

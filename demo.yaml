@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://demodepot.launchdarklydemos.com/schemas/demo.schema.json
+schemaVersion: 1
+slug: ld-architecture-whiteboard
+name: LD architecture whiteboard
+summary: Sketch LaunchDarkly architecture with labeled flags, SDKs, contexts, and release components.
+owners:
+  - ctluck@launchdarkly.com
+tags:
+  - feature-management
+  - targeting
+  - release-pipelines
+  - experimentation
+media:
+  cover: ./media/cover.png
+links: {}
+runtime:
+  ingress:
+    container: web
+    port: 80
+    healthCheck: { path: /healthz }
+  containers:
+    - name: web
+      build: { context: . }
+      cpu: 512
+      memory: 1024
+      env: { NODE_ENV: production }
+capabilities: []
+launchdarkly:
+  seed: ./ld/seed.json
+  apiToken: none
+access:
+  default: sso
+  allowPublic: false
+lifecycle:
+  pausable: true
+verify:
+  http:
+    - path: /healthz
+      expectStatus: 200
+    - path: /
+      expectStatus: 200
+      expectBodyContains: Excalidraw
